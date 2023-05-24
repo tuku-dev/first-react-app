@@ -1,7 +1,10 @@
+import './App.css'
+import { useState } from "react";
 import Expenses from "./components/Expenses/Expenses";
 import NewExpense from "./components/NewExpense/NewExpense";
 
 function App() {
+  const [messageInput, setMessageInput] = useState("");
   const expenses = [
     {
       id: "e1",
@@ -23,8 +26,15 @@ function App() {
       date: new Date(2021, 5, 12),
     },
   ];
+
+  const inputHandler = (e) => setMessageInput(e.tartet.value);
   return (
     <div className="App">
+      <form>
+        <label>Your message</label>
+        <input type="text" onChange={inputHandler} />
+        <p>Invalid message</p>
+      </form>
       <NewExpense />
       <Expenses item={expenses} />
     </div>
